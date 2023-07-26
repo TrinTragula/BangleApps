@@ -285,11 +285,15 @@ const regexPattern = /[^A-Za-z0-9\!\?\s]/g;
  */
 function info(info) {
   scrollStop();
-  console.log("before",layout);
+  console.log("before",layout.title);
+  console.log("before",layout.album);
+  console.log("before",layout.artist);
   layout.title.label = info.track ? info.track.replace(regexPattern, "").trim().slice(0, 20) : "";
   layout.album.label = info.album ? info.album.replace(regexPattern, "").trim().slice(0, 20) : "";
   layout.artist.label = info.artist ? info.artist.replace(regexPattern, "").trim().slice(0, 20) : "";
-  console.log("after",layout);
+  console.log("after",layout.title);
+  console.log("after",layout.album);
+  console.log("after",layout.artist);
   // color depends on all labels
   layout.title.col = infoColor("title");
   layout.album.col = infoColor("album");

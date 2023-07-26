@@ -13,3 +13,4 @@
 0.12: Issue newline before GB commands (solves issue with console.log and ignored commands)
 0.13: Audible fix
 0.14: Audible fix
+0.15: Audible fix
