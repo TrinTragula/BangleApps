@@ -24,6 +24,7 @@ setTimeout( // make other boot code run first, so we override e.g. android.boot.
       // we eat music events!
       switch(e.t) {
         case "musicinfo":
+          e.album = e.album ? e.album.trim().slice(0, 10) : "";
           i = e;
           return APP ? info(e) : check();
         case "musicstate":
