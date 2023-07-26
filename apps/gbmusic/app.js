@@ -294,9 +294,7 @@ function info(info) {
   layout.title.col = infoColor("title");
   layout.album.col = infoColor("album");
   layout.artist.col = infoColor("artist");
-  try {
   layout.num.label = formatNum(info);
-  } catch {}
   layout.update();
   layout.render();
   rTitle(layout.title); // force redraw of title, or scroller might break
