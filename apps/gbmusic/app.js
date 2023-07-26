@@ -278,21 +278,23 @@ function formatNum(info) {
   return num;
 }
 
-const regexPattern = /[^A-Za-z0-9\!\?]/g;
+const regexPattern = /[^A-Za-z0-9\!\?\s]/g;
 /**
  * Update music info
  * @param {Object} info - Gadgetbridge musicinfo event
  */
 function info(info) {
   scrollStop();
-  layout.title.label = info.track ? info.track.replace(regexPattern, "") : "";
-  layout.album.label = info.album ? info.album.replace(regexPattern, "") : "";
-  layout.artist.label = info.artist ? info.artist.replace(regexPattern, "") : "";
+  layout.title.label = info.track ? info.track.replace(regexPattern, "").trim().slice(10) : "";
+  layout.album.label = info.album ? info.album.replace(regexPattern, "").trim().slice(10) : "";
+  layout.artist.label = info.artist ? info.artist.replace(regexPattern, "").trim().slice(10) : "";
   // color depends on all labels
   layout.title.col = infoColor("title");
   layout.album.col = infoColor("album");
   layout.artist.col = infoColor("artist");
+  try {
   layout.num.label = formatNum(info);
+  } catch {}
   layout.update();
   layout.render();
   rTitle(layout.title); // force redraw of title, or scroller might break
