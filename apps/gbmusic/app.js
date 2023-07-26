@@ -285,9 +285,9 @@ const regexPattern = /[^A-Za-z0-9\!\?]/g;
  */
 function info(info) {
   scrollStop();
-  layout.title.label = info.track?.replace(regexPattern, "") || "";
-  layout.album.label = info.album?.replace(regexPattern, "") || "";
-  layout.artist.label = info.artist?.replace(regexPattern, "") || "";
+  layout.title.label = info.track ? info.track.replace(regexPattern, "") : "";
+  layout.album.label = info.album ? info.album.replace(regexPattern, "") : "";
+  layout.artist.label = info.artist ? info.artist.replace(regexPattern, "") : "";
   // color depends on all labels
   layout.title.col = infoColor("title");
   layout.album.col = infoColor("album");
@@ -304,7 +304,7 @@ function info(info) {
   if (auto && stat==="play") {
     // if inactive for double song duration (or an hour if unknown), load the clock
     // i.e. phone finished playing without bothering to notify the watch
-    tIxt = setTimeout(load, ((info.dur ?? 1)*2000) || IOUT);
+    tIxt = setTimeout(load, ((info.dur || 1)*2000) || IOUT);
   }
 }
 
@@ -334,7 +334,7 @@ function state(e) {
       case "play":
         // if inactive for double song duration (or an hour if unknown), load the clock
         // i.e. phone finished playing without bothering to notify the watch
-        tIxt = setTimeout(load, ((e.dur??1)*2000) || IOUT);
+        tIxt = setTimeout(load, ((e.dur || 1)*2000) || IOUT);
         break;
       case "pause":
       default:
